@@ -1,5 +1,5 @@
 # PanelCitas_Red_Psicoterapia_Online
----
+
 ## Descripcion
 ---
 - Proyecto enfocado en la creacion del backend para creacion , asignacion y manipulacion de citas y horarios para red de psicoterapia online.
@@ -7,6 +7,11 @@
 ## Objetivo general
 ---
 - Crear la estructura backend haciendo uso de tecnologias, para poder gestionar y asignar citas para usuarios de una red de psicoterapia online.
+
+---
+## Diagrama Entidad Relacion
+---
+![Diagrama Entidad Relacion de la base de datos](./imgs/baseDatos.png)
 
 ---
 ## Objetivos especificos
