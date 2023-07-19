@@ -13,6 +13,7 @@
 ---
 ![Diagrama Entidad Relacion de la base de datos](./imgs/baseDatos.png)
 
+
 ---
 ## Objetivos especificos
 ---
