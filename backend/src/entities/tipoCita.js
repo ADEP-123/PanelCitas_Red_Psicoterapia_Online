@@ -3,7 +3,10 @@ import executeQuery from "../utils/db.js";
 class TipoCita {
     tipoCita_id;
     tipoCita_nombre;
-    constructor() { }
+    constructor(id, nombre) {
+        this.tipoCita_id = id;
+        this.tipoCita_nombre = nombre;
+    }
     async getAllTipoCita() {
         let sql = /*sql*/`SELECT tipoCita_id as ID, tipoCita_nombre as Nombre FROM tipo_cita`;
         try {
@@ -13,8 +16,8 @@ class TipoCita {
             throw error;
         }
     }
-    async getTipoCitabyId(id) {
-        let sql = /*sql*/`SELECT tipoCita_id as Id, tipoCita_nombre as Nombre FROM tipo_cita where tipoCita_id = \'${id}\'`;
+    async getTipoCitabyId() {
+        let sql = /*sql*/`SELECT tipoCita_id as Id, tipoCita_nombre as Nombre FROM tipo_cita where tipoCita_id = \'${this.tipoCita_id}\'`;
         try {
             const result = await executeQuery(sql);
             return result.data;
@@ -22,8 +25,8 @@ class TipoCita {
             throw error;
         }
     }
-    async postTipoCita(nombre) {
-        let sql = /*sql*/`INSERT INTO tipo_cita (tipoCita_nombre) VALUES (\'${nombre}\')`;
+    async postTipoCita() {
+        let sql = /*sql*/`INSERT INTO tipo_cita (tipoCita_nombre) VALUES (\'${this.tipoCita_nombre}\')`;
         try {
             const result = await executeQuery(sql);
             return result.data;
@@ -31,8 +34,8 @@ class TipoCita {
             throw error;
         }
     }
-    async putTipoCita(id, nombre) {
-        let sql = /*sql*/`UPDATE tipo_cita SET tipoCita_nombre = \'${nombre}\' WHERE tipoCita_id = \'${id}\'`;
+    async putTipoCita() {
+        let sql = /*sql*/`UPDATE tipo_cita SET tipoCita_nombre = \'${this.tipoCita_nombre}\' WHERE tipoCita_id = \'${this.tipoCita_id}\'`;
         try {
             const result = await executeQuery(sql);
             return result.data;
@@ -41,7 +44,7 @@ class TipoCita {
         }
     }
     async deleteTipoCita(id) {
-        let sql = /*sql*/`DELETE FROM tipo_cita WHERE tipoCita_id = \'${id}\'`;
+        let sql = /*sql*/`DELETE FROM tipo_cita WHERE tipoCita_id = \'${this.tipoCita_id}\'`;
         try {
             const result = await executeQuery(sql);
             return result.data;
