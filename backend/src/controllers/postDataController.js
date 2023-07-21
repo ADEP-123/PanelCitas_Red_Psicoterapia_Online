@@ -1,5 +1,4 @@
-import { postTipoCitaService } from "../services/postServices.js";
-import { postEstadoCitaService } from "../services/postServices.js";
+import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService } from "../services/postServices.js";
 
 const postTipoCitaController = async (req, res, next) => {
     try {
@@ -21,7 +20,18 @@ const postEstadoCitaController = async (req, res, next) => {
     }
 };
 
+const postTipoDocumentoController = async (req, res, next) => {
+    try {
+        const { id, nombre, abreviatura } = req.body
+        const result = await postTipoDocumentoService(id, nombre, abreviatura);
+        res.status(200).json({ message: `Nuevo tipo de documento \'${nombre}\' creado con exito`, result })
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
 export {
     postTipoCitaController,
-    postEstadoCitaController
+    postEstadoCitaController,
+    postTipoDocumentoController
 }

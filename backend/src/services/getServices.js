@@ -21,7 +21,7 @@ const getEstadoCitaService = async (id, nombre) => {
         result = await estadoCita.getAllEstadoCita();
     }
     return result;
-}
+};
 
 
 export {
