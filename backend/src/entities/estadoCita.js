@@ -36,6 +36,16 @@ class EstadoCita {
         }
     }
 
+    async putEstadoCita() {
+        let sql = /*sql*/`UPDATE estado_cita SET estadoCita_nombre = \'${this.estadoCita_nombre}\' WHERE estadoCita_id = \'${this.estadoCita_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 
 }
 
