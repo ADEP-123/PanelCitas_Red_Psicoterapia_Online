@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getTodasCitasController } from "../controllers/getDataController.js";
+import { getTipoCitaController } from "../controllers/getDataController.js";
 
 const getInitRoute = () => {
     const router = Router()
-    router.get("/AllDateTypes",getTodasCitasController)
+    router.get("/tipoCita", getTipoCitaController)
     return router;
 }
 

@@ -13,5 +13,17 @@ class TipoCita {
             throw error;
         }
     }
+    async getTipoCitabyId(Id) {
+        let sql = /*sql*/`SELECT tipoCita_id as Id, tipoCita_nombre as Nombre FROM tipo_cita where tipoCita_id = \'${Id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+
 }
+
 export default TipoCita;
