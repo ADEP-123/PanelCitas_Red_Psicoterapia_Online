@@ -22,6 +22,15 @@ class TipoCita {
             throw error;
         }
     }
+    async postTipoCita(nombre) {
+        let sql = /*sql*/`INSERT INTO tipo_cita (tipoCita_nombre) VALUES (\'${nombre}\')`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 
 
 }
