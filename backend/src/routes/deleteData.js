@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { deleteTipoCitaController } from "../controllers/deleteDataController.js";
+import { deleteEstadoCitaController, deleteTipoCitaController } from "../controllers/deleteDataController.js";
 
 const deleteInitRoute = () => {
     const router = Router()
     router.delete("/tipoCita", deleteTipoCitaController)
+    router.delete("/estadoCita", deleteEstadoCitaController)
     return router;
 }
 

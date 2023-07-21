@@ -46,7 +46,15 @@ class EstadoCita {
         }
     }
 
-
+    async deleteEstadoCita() {
+        let sql = /*sql*/`DELETE FROM estado_cita WHERE estadoCita_id = \'${this.estadoCita_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 
