@@ -40,6 +40,15 @@ class TipoCita {
             throw error;
         }
     }
+    async deleteTipoCita(id) {
+        let sql = /*sql*/`DELETE FROM tipo_cita WHERE tipoCita_id = \'${id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 
 
 }
