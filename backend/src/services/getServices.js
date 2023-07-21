@@ -1,10 +1,10 @@
 import TipoCita from "../entities/tipoCita.js";
 
-const getTipoCita = async (Id) => {
+const getTipoCitaService = async (id) => {
     let result
-    if (Id) {
+    if (id) {
         const tipoCita = new TipoCita();
-        result = await tipoCita.getTipoCitabyId(Id);
+        result = await tipoCita.getTipoCitabyId(id);
     } else {
         const tipoCita = new TipoCita();
         result = await tipoCita.getAllTipoCita();
@@ -13,5 +13,5 @@ const getTipoCita = async (Id) => {
 }
 
 export {
-    getTipoCita
+    getTipoCitaService
 }
