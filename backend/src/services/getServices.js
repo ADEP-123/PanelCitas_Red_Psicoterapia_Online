@@ -1,5 +1,6 @@
 import TipoCita from "../entities/tipoCita.js";
 import EstadoCita from "../entities/estadoCita.js";
+import TipoDocumento from "../entities/tipoDocumento.js";
 
 const getTipoCitaService = async (id, nombre) => {
     let result
@@ -23,8 +24,20 @@ const getEstadoCitaService = async (id, nombre) => {
     return result;
 };
 
+const getTipoDocumentoService = async (id, nombre, abreviatura) => {
+    let result
+    const estadoCita = new TipoDocumento(id, nombre, abreviatura);
+    if (id) {
+        result = await estadoCita.getTipoDocumentoById(id);
+    } else {
+        result = await estadoCita.getAllTipoDocumento();
+    }
+    return result;
+};
+
 
 export {
     getTipoCitaService,
-    getEstadoCitaService
+    getEstadoCitaService,
+    getTipoDocumentoService
 }
