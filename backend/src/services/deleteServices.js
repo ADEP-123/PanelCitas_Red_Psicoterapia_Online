@@ -1,27 +1,35 @@
 import TipoCita from "../entities/tipoCita.js";
 import EstadoCita from "../entities/estadoCita.js";
 import TipoDocumento from "../entities/tipoDocumento.js";
+import Acudiente from "../entities/acudiente.js";
 
-const deleteTipoCitaService = async (id, nombre) => {
-    const tipoCita = new TipoCita(id, nombre);
+const deleteTipoCitaService = async (id) => {
+    const tipoCita = new TipoCita(id);
     const result = await tipoCita.deleteTipoCita();
     return result;
 }
 
-const deleteEstadoCitaService = async (id, nombre) => {
-    const estadoCita = new EstadoCita(id, nombre);
+const deleteEstadoCitaService = async (id) => {
+    const estadoCita = new EstadoCita(id);
     const result = await estadoCita.deleteEstadoCita();
     return result
 }
 
-const deleteTipoDocumentoService = async (id, nombre, abreviatura) => {
-    const tipoDocumento = new TipoDocumento(id, nombre, abreviatura);
+const deleteTipoDocumentoService = async (id) => {
+    const tipoDocumento = new TipoDocumento(id);
     const result = await tipoDocumento.deleteTipoDocumento();
+    return result
+};
+
+const deleteAcudienteService = async (id) => {
+    const acudiente = new Acudiente(id);
+    const result = await acudiente.deleteAcudiente();
     return result
 };
 
 export {
     deleteTipoCitaService,
     deleteEstadoCitaService,
-    deleteTipoDocumentoService
+    deleteTipoDocumentoService,
+    deleteAcudienteService
 }

@@ -109,6 +109,18 @@ class Acudiente {
             throw error;
         }
     }
+
+    async deleteAcudiente() {
+        let sql = /*sql*/`
+          DELETE FROM acudiente
+          WHERE acu_id = \'${this.acu_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 
