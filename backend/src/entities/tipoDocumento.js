@@ -40,6 +40,16 @@ class TipoDocumento {
       }
     }
 
+    async putTipoDocumento() {
+      let sql = /*sql*/`UPDATE tipo_documento SET tipdoc_nombre = \'${this.tipdoc_nombre}\', tipdoc_abreviatura = \'${this.tipdoc_abreviatura}\' WHERE tipdoc_id = \'${this.tipdoc_id}\'`;
+      try {
+        const result = await executeQuery(sql);
+        return result.data;
+      } catch (error) {
+        throw error;
+      }
+    }
+
   }
   
 
