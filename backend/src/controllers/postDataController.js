@@ -1,4 +1,4 @@
-import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService, postPacienteService } from "../services/postServices.js";
+import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService, postPacienteService, postAcudienteService } from "../services/postServices.js";
 
 const postTipoCitaController = async (req, res, next) => {
     try {
@@ -30,6 +30,16 @@ const postTipoDocumentoController = async (req, res, next) => {
     }
 };
 
+const postAcudienteController = async (req, res, next) => {
+    try {
+        const { id, tipoDocumento, nombre, genero, fechaNacimiento, telefPersonal, telefHogar, email } = req.body
+        const result = await postAcudienteService(id, tipoDocumento, nombre, genero, fechaNacimiento, telefPersonal, telefHogar, email);
+        res.status(200).json({ message: `Nuevo acudiente \'${nombre}\' creado con exito`, result })
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
 const postPacienteController = async (req, res, next) => {
     try {
         const { id, tipoDocumento, nombre, genero, fechaNacimiento, acudiente, telefPersonal, telefHogar, email } = req.body
@@ -45,5 +55,6 @@ export {
     postTipoCitaController,
     postEstadoCitaController,
     postTipoDocumentoController,
+    postAcudienteController,
     postPacienteController
 }

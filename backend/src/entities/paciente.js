@@ -22,6 +22,49 @@ class Paciente {
         this.pac_email = email;
     }
 
+    async getAllPacientes() {
+        let sql = /*sql*/`
+          SELECT
+            pac_id as id,
+            pac_tipdoc as tipoDocumento,
+            pac_nombre_completo as nombre,
+            pac_genero as genero,
+            pac_fechNac as fechaNacimiento,
+            pac_acudiente as acudiente,
+            pac_movPerso as telefPersonal,
+            pac_telefonoHogar as telfHogar,
+            pac_email as email
+          FROM paciente`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getPacienteById() {
+        let sql = /*sql*/`
+          SELECT
+            pac_id as id,
+            pac_tipdoc as tipoDocumento,
+            pac_nombre_completo as nombre,
+            pac_genero as genero,
+            pac_fechNac as fechaNacimiento,
+            pac_acudiente as acudiente,
+            pac_movPerso as telefPersonal,
+            pac_telefonoHogar as telfHogar,
+            pac_email as email
+          FROM paciente
+          WHERE pac_id = \'${this.pac_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async postPaciente() {
         let sql = /*sql*/`
         INSERT INTO paciente (
@@ -45,6 +88,39 @@ class Paciente {
         ${this.pac_telefonoHogar === undefined ? 'NULL' : `'${this.pac_telefonoHogar}'`},
         \'${this.pac_email}\'
         )`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async putPaciente() {
+        let sql = /*sql*/`
+          UPDATE paciente
+          SET
+            pac_tipdoc = \'${this.pac_tipdoc}\',
+            pac_nombre_completo = \'${this.pac_nombre_completo}\',
+            pac_genero = \'${this.pac_genero}\',
+            pac_fechNac = \'${this.pac_fechNac}\',
+            pac_acudiente = ${this.pac_acudiente === undefined ? 'NULL' : `'${this.pac_acudiente}'`},
+            pac_movPerso = \'${this.pac_movPerso}\',
+            pac_telefonoHogar = ${this.pac_telefonoHogar === undefined ? 'NULL' : `'${this.pac_telefonoHogar}'`},
+            pac_email = \'${this.pac_email}\'
+          WHERE pac_id = \'${this.pac_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async deletePaciente() {
+        let sql = /*sql*/`
+          DELETE FROM paciente
+          WHERE pac_id = \'${this.pac_id}\'`;
         try {
             const result = await executeQuery(sql);
             return result.data;
