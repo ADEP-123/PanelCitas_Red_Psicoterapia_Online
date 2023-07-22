@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { putAcudienteController, putEstadoCitaController, putTipoCitaController, putTipoDocumentoController } from "../controllers/putDataController.js";
+import { putAcudienteController, putEstadoCitaController, putPacienteController, putTipoCitaController, putTipoDocumentoController } from "../controllers/putDataController.js";
 
 const putInitRoute = () => {
     const router = Router()
@@ -7,6 +7,7 @@ const putInitRoute = () => {
     router.put("/estadoCita", putEstadoCitaController)
     router.put("/tipoDocumento", putTipoDocumentoController)
     router.put("/acudiente", putAcudienteController)
+    router.put("/paciente", putPacienteController)
     return router;
 }
 
