@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { postTipoCitaController, postEstadoCitaController, postTipoDocumentoController, postPacienteController, postAcudienteController, postGeneroController, postHistorialPacienteController, postCitaController } from "../controllers/postDataController.js";
-import { middlewareEstadoCitaDTO, middlewareGeneroDTO, middlewareTipoCitaDTO, middlewareTipoDocumentoDTO } from "./middleware/middlewareDTO.js";
+import { middlewareAcudienteDTO, middlewareEstadoCitaDTO, middlewareGeneroDTO, middlewareTipoCitaDTO, middlewareTipoDocumentoDTO } from "./middleware/middlewareDTO.js";
 
 const postInitRoute = () => {
     const router = Router()
@@ -8,7 +8,7 @@ const postInitRoute = () => {
     router.post("/estadoCita", middlewareEstadoCitaDTO, postEstadoCitaController)
     router.post("/tipoDocumento", middlewareTipoDocumentoDTO, postTipoDocumentoController)
     router.post("/genero", middlewareGeneroDTO, postGeneroController)
-    router.post("/acudiente", postAcudienteController)
+    router.post("/acudiente", middlewareAcudienteDTO, postAcudienteController)
     router.post("/paciente", postPacienteController)
     router.post("/historialPaciente", postHistorialPacienteController)
     router.post("/cita", postCitaController)

@@ -5,6 +5,7 @@ import { tipoCitaDTO } from '../dto/js/tipoCitaDto.js';
 import { estadoCitaDTO } from '../dto/js/estadoCitaDTO.js';
 import { tipoDocumentoDTO } from '../dto/js/tipoDocumentoDTO.js';
 import { generoDTO } from '../dto/js/generoDTO.js';
+import { acudienteDTO } from '../dto/js/acudienteDTO.js';
 
 const middlewareTipoCitaDTO = express();
 middlewareTipoCitaDTO.use((req, res, next) => {
@@ -50,10 +51,22 @@ middlewareGeneroDTO.use((req, res, next) => {
     }
 });
 
+const middlewareAcudienteDTO = express();
+middlewareAcudienteDTO.use((req, res, next) => {
+    try {
+        let data = plainToClass(acudienteDTO, req.body, { excludeExtraneousValues: true });
+        req.body = JSON.parse(JSON.stringify(data));
+        next()
+    } catch (err) {
+        res.status(err.status).send(err)
+    }
+});
+
 
 export {
     middlewareTipoCitaDTO,
     middlewareEstadoCitaDTO,
     middlewareTipoDocumentoDTO,
-    middlewareGeneroDTO
+    middlewareGeneroDTO,
+    middlewareAcudienteDTO
 }
