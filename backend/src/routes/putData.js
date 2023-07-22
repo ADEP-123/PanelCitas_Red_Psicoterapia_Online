@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { putAcudienteController, putCitaController, putEstadoCitaController, putGeneroController, putHistorialPacienteController, putPacienteController, putTipoCitaController, putTipoDocumentoController } from "../controllers/putDataController.js";
-
+import middlewareTipoCitaDTO from "./middleware/middlewareTipoCita.js";
 const putInitRoute = () => {
     const router = Router()
-    router.put("/tipoCita", putTipoCitaController)
+    router.put("/tipoCita", middlewareTipoCitaDTO, putTipoCitaController)
     router.put("/estadoCita", putEstadoCitaController)
     router.put("/tipoDocumento", putTipoDocumentoController)
     router.put("/genero", putGeneroController)

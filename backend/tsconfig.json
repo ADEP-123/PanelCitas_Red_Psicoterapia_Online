@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "es6",
+        "moduleResolution": "node",
+        "outDir": "./src/routes/dto/js",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "include": [
+        "./src/routes/dto/ts/*.ts"
+    ]
+}
