@@ -1,4 +1,4 @@
-import { getAcudienteService, getTipoCitaService, getTipoDocumentoService } from "../services/getServices.js";
+import { getAcudienteService, getPacienteService, getTipoCitaService, getTipoDocumentoService } from "../services/getServices.js";
 import { getEstadoCitaService } from "../services/getServices.js";
 
 const getTipoCitaController = async (req, res, next) => {
@@ -41,9 +41,20 @@ const getAcudienteController = async (req, res, next) => {
     }
 };
 
+const getPacienteController = async (req, res, next) => {
+    try {
+        const { id, tipoDocumento, nombre, genero, fechaNacimiento, acudiente, telefPersonal, telefHogar, email } = req.query
+        const result = await getPacienteService(id, tipoDocumento, nombre, genero, fechaNacimiento, acudiente, telefPersonal, telefHogar, email);
+        res.status(200).json({ message: `se han encontrado ${result.length} resultados`, result })
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
 export {
     getTipoCitaController,
     getEstadoCitaController,
     getTipoDocumentoController,
-    getAcudienteController
+    getAcudienteController,
+    getPacienteController
 }
