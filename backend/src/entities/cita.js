@@ -100,6 +100,27 @@ class Cita {
             throw error;
         }
     }
+
+    async putCita() {
+        let sql = /*sql*/`
+                UPDATE cita
+                SET
+                    cita_tipo = \'${this.cita_tipo}\',
+                    cita_estado = \'${this.cita_estado}\',
+                    fecha_inicio = \'${this.fecha_inicio}\',
+                    fecha_fin = \'${this.fecha_fin}\',
+                    fecha_actualizacion_estado = \'${this.fecha_actualizacion_estado}\',
+                    cita_historial = \'${this.cita_historial}\'
+                WHERE cita_id = \'${this.cita_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+
 }
 
 export default Cita;
