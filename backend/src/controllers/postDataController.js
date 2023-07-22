@@ -1,5 +1,5 @@
-import { getAcudienteService } from "../services/getServices.js";
-import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService, postPacienteService, postAcudienteService, postGeneroService, postHistorialPacienteService } from "../services/postServices.js";
+import { getAcudienteService, getCitaService } from "../services/getServices.js";
+import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService, postPacienteService, postAcudienteService, postGeneroService, postHistorialPacienteService, postCitaService } from "../services/postServices.js";
 
 const postTipoCitaController = async (req, res, next) => {
     try {
@@ -84,6 +84,34 @@ const postHistorialPacienteController = async (req, res, next) => {
     }
 };
 
+const postCitaController = async (req, res, next) => {
+    try {
+        const { id, tipo, estado, inicio, fin, ultimaActualiz, historial } = req.body
+        let result;
+        if (new Date(fin) < new Date(inicio)) {
+            res.status(500).json({ message: "La hora de inicio de la cita debe ser anterior a la hora final" });
+        } else {
+            result = await getCitaService();
+            let coinc = false;
+            result.forEach(element => {
+                if (element.inicio == inicio || element.fin == fin) {
+                    if (element.estado == 2) {
+                        coinc = true
+                    }
+                }
+            });
+            if (coinc == true) {
+                res.status(500).json({ message: 'El horario elegido ya existe' });
+            } else {
+                result = await postCitaService(id, tipo, estado, inicio, fin, ultimaActualiz, historial);
+                res.status(200).json({ message: `Nuevo cita creada con exito`, result })
+            }
+        }
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
 export {
     postTipoCitaController,
     postEstadoCitaController,
@@ -91,5 +119,6 @@ export {
     postAcudienteController,
     postPacienteController,
     postGeneroController,
-    postHistorialPacienteController
+    postHistorialPacienteController,
+    postCitaController
 }

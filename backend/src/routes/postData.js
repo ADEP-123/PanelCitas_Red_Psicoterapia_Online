@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { postTipoCitaController, postEstadoCitaController, postTipoDocumentoController, postPacienteController, postAcudienteController, postGeneroController, postHistorialPacienteController } from "../controllers/postDataController.js";
+import { postTipoCitaController, postEstadoCitaController, postTipoDocumentoController, postPacienteController, postAcudienteController, postGeneroController, postHistorialPacienteController, postCitaController } from "../controllers/postDataController.js";
 
 const postInitRoute = () => {
     const router = Router()
@@ -10,6 +10,7 @@ const postInitRoute = () => {
     router.post("/acudiente", postAcudienteController)
     router.post("/paciente", postPacienteController)
     router.post("/historialPaciente", postHistorialPacienteController)
+    router.post("/cita", postCitaController)
     return router;
 }
 
