@@ -10,6 +10,37 @@ class Genero {
         this.gen_abreviatura = abreviatura;
     }
 
+    async getAllGeneros() {
+        let sql = /*sql*/`
+            SELECT
+                gen_id as id,
+                gen_nombre as nombre,
+                gen_abreviatura as abreviatura
+            FROM genero`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getGeneroById() {
+        let sql = /*sql*/`
+            SELECT
+                gen_id as id,
+                gen_nombre as nombre,
+                gen_abreviatura as abreviatura
+            FROM genero
+            WHERE gen_id = \'${this.gen_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data[0];
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async postGenero() {
         let sql = /*sql*/`
             INSERT INTO genero (gen_nombre, gen_abreviatura)

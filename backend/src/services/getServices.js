@@ -3,6 +3,7 @@ import EstadoCita from "../entities/estadoCita.js";
 import TipoDocumento from "../entities/tipoDocumento.js";
 import Acudiente from "../entities/acudiente.js";
 import Paciente from "../entities/paciente.js";
+import Genero from "../entities/genero.js";
 
 const getTipoCitaService = async (id, nombre) => {
     let result
@@ -37,6 +38,17 @@ const getTipoDocumentoService = async (id, nombre, abreviatura) => {
     return result;
 };
 
+const getGeneroService = async (id, nombre, abreviatura) => {
+    let result
+    const genero = new Genero(id, nombre, abreviatura);
+    if (id) {
+        result = await genero.getGeneroById();
+    } else {
+        result = await genero.getAllGeneros();
+    }
+    return result;
+};
+
 const getAcudienteService = async (id, tipoDocumento, nombre, genero, fechaNacimiento, telefPersonal, telefHogar, email) => {
     let result
     const acudiente = new Acudiente(id, tipoDocumento, nombre, genero, fechaNacimiento, telefPersonal, telefHogar, email);
@@ -65,5 +77,6 @@ export {
     getEstadoCitaService,
     getTipoDocumentoService,
     getAcudienteService,
-    getPacienteService
+    getPacienteService,
+    getGeneroService
 }
