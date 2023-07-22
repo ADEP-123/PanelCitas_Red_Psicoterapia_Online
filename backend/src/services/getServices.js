@@ -4,6 +4,7 @@ import TipoDocumento from "../entities/tipoDocumento.js";
 import Acudiente from "../entities/acudiente.js";
 import Paciente from "../entities/paciente.js";
 import Genero from "../entities/genero.js";
+import HistorialPaciente from "../entities/historialPaciente.js";
 
 const getTipoCitaService = async (id, nombre) => {
     let result
@@ -71,6 +72,21 @@ const getPacienteService = async (id, tipoDocumento, nombre, genero, fechaNacimi
     return result;
 };
 
+const getHistorialPacienteService = async (id, paciente) => {
+    let result
+    const historialPaciente = new HistorialPaciente(id, paciente);
+    if (id) {
+        result = await historialPaciente.getHistorialPacienteById();
+    } else {
+        if (paciente) {
+            result = await historialPaciente.getHistorialPacienteByPacienteId();
+        } else {
+            result = await historialPaciente.getAllHistorialPacientes();
+        }
+    }
+    return result;
+};
+
 
 export {
     getTipoCitaService,
@@ -78,5 +94,6 @@ export {
     getTipoDocumentoService,
     getAcudienteService,
     getPacienteService,
-    getGeneroService
+    getGeneroService,
+    getHistorialPacienteService
 }
