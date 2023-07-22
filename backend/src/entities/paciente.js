@@ -1,7 +1,7 @@
 import executeQuery from "../utils/db.js";
 
 class Paciente {
-    pac_id;
+    ;
     pac_tipdoc;
     pac_nombre_completo;
     pac_genero;
