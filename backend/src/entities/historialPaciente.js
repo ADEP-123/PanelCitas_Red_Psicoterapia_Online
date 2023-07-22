@@ -83,6 +83,18 @@ class HistorialPaciente {
             throw error;
         }
     }
+
+    async deleteHistorialPaciente() {
+        let sql = /*sql*/`
+            DELETE FROM historial_paciente
+            WHERE historialPaciente_id = ${this.historialPaciente_id}`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default HistorialPaciente;

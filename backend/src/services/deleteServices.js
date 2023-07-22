@@ -4,6 +4,7 @@ import TipoDocumento from "../entities/tipoDocumento.js";
 import Acudiente from "../entities/acudiente.js";
 import Paciente from "../entities/paciente.js";
 import Genero from "../entities/genero.js";
+import HistorialPaciente from "../entities/historialPaciente.js";
 
 const deleteTipoCitaService = async (id) => {
     const tipoCita = new TipoCita(id);
@@ -41,11 +42,18 @@ const deletePacienteService = async (id) => {
     return result
 };
 
+const deleteHistorialPacienteService = async (id) => {
+    const historialPaciente = new HistorialPaciente(id);
+    const result = await historialPaciente.deleteHistorialPaciente();
+    return result
+};
+
 export {
     deleteTipoCitaService,
     deleteEstadoCitaService,
     deleteTipoDocumentoService,
     deleteAcudienteService,
     deletePacienteService,
-    deleteGeneroService
+    deleteGeneroService,
+    deleteHistorialPacienteService
 }
