@@ -1,5 +1,5 @@
 import { getAcudienteService } from "../services/getServices.js";
-import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService, postPacienteService, postAcudienteService, postGeneroService } from "../services/postServices.js";
+import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService, postPacienteService, postAcudienteService, postGeneroService, postHistorialPacienteService } from "../services/postServices.js";
 
 const postTipoCitaController = async (req, res, next) => {
     try {
@@ -74,11 +74,22 @@ const postPacienteController = async (req, res, next) => {
     }
 };
 
+const postHistorialPacienteController = async (req, res, next) => {
+    try {
+        const { id, paciente } = req.body
+        const result = await postHistorialPacienteService(id, paciente);
+        res.status(200).json({ message: `Nuevo historial del paciente \'${paciente}\' creado con exito`, result })
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
 export {
     postTipoCitaController,
     postEstadoCitaController,
     postTipoDocumentoController,
     postAcudienteController,
     postPacienteController,
-    postGeneroController
+    postGeneroController,
+    postHistorialPacienteController
 }
