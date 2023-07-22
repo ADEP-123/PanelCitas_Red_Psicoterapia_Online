@@ -4,6 +4,7 @@ import TipoDocumento from "../entities/tipoDocumento.js";
 import Acudiente from "../entities/acudiente.js";
 import Paciente from "../entities/paciente.js";
 import Genero from "../entities/genero.js";
+import HistorialPaciente from "../entities/historialPaciente.js";
 
 const putTipoCitaService = async (id, nombre) => {
     const tipoCita = new TipoCita(id, nombre);
@@ -41,6 +42,12 @@ const putPacienteService = async (id, tipoDocumento, nombre, genero, fechaNacimi
     return result
 };
 
+const putHistorialPacienteService = async (id, paciente) => {
+    const historialPaciente = new HistorialPaciente(id, paciente);
+    const result = await historialPaciente.putHistorialPaciente();
+    return result
+};
+
 
 export {
     putTipoCitaService,
@@ -48,5 +55,6 @@ export {
     putTipoDocumentoService,
     putAcudienteService,
     putPacienteService,
-    putGeneroService
+    putGeneroService,
+    putHistorialPacienteService
 }

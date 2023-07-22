@@ -69,6 +69,20 @@ class HistorialPaciente {
             throw error;
         }
     }
+
+    async putHistorialPaciente() {
+        let sql = /*sql*/`
+            UPDATE historial_paciente
+            SET
+                historialPaciente_paciente = \'${this.historialPaciente_paciente}\'
+            WHERE historialPaciente_id = \'${this.historialPaciente_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default HistorialPaciente;
