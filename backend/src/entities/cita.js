@@ -52,7 +52,7 @@ class Cita {
                 WHERE cita_id = \'${this.cita_id}\'`;
         try {
             const result = await executeQuery(sql);
-            return result.data[0];
+            return result.data;
         } catch (error) {
             throw error;
         }
