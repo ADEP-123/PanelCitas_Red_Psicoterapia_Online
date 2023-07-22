@@ -71,6 +71,17 @@ class Genero {
         }
     }
 
+    async deleteGenero() {
+        let sql = /*sql*/`
+            DELETE FROM genero
+            WHERE gen_id = \'${this.gen_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 
