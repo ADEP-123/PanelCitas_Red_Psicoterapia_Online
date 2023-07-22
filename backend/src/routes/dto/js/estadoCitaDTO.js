@@ -16,10 +16,10 @@ export class estadoCitaDTO {
 }
 __decorate([
     Expose({ name: "id" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
-        return Math.floor(value);
+    Transform(({ value, key }) => { if (parseInt(value) || value == null)
+        return value;
     else
-        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en ecritura del id del historial` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], estadoCitaDTO.prototype, "id", void 0);
 __decorate([

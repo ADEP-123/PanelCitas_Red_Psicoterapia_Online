@@ -3,7 +3,7 @@ import { Expose, Type, Transform } from "class-transformer";
 export class tipoCitaDTO {
 
     @Expose({ name: "id" })
-    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (parseInt(value) || value == null) return value; else throw { status: 400, message: `Error en ecritura del id del historial` } }, { toClassOnly: true })
     id: number;
 
     @Expose({ name: "nombre" })
