@@ -89,6 +89,26 @@ class Acudiente {
             throw error;
         }
     }
+
+    async putAcudiente() {
+        let sql = /*sql*/`
+          UPDATE acudiente
+          SET
+            acu_tipdoc = \'${this.acu_tipdoc}\',
+            acu_nombre_completo = \'${this.acu_nombre_completo}\',
+            acu_genero = \'${this.acu_genero}\',
+            acu_fechNac = \'${this.acu_fechNac}\',
+            acu_movPerso = \'${this.acu_movPerso}\',
+            acu_telefonoHogar = ${this.acu_telefonoHogar === undefined ? 'NULL' : `'${this.acu_telefonoHogar}'`},
+            acu_email = \'${this.acu_email}\'
+          WHERE acu_id = \'${this.acu_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 
