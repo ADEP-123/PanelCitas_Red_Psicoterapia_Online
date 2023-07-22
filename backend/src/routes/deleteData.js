@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteAcudienteController, deleteEstadoCitaController, deleteGeneroController, deleteHistorialPacienteController, deletePacienteController, deleteTipoCitaController, deleteTipoDocumentoController } from "../controllers/deleteDataController.js";
+import { deleteAcudienteController, deleteCitaController, deleteEstadoCitaController, deleteGeneroController, deleteHistorialPacienteController, deletePacienteController, deleteTipoCitaController, deleteTipoDocumentoController } from "../controllers/deleteDataController.js";
 
 const deleteInitRoute = () => {
     const router = Router()
@@ -10,6 +10,7 @@ const deleteInitRoute = () => {
     router.delete("/acudiente", deleteAcudienteController)
     router.delete("/paciente", deletePacienteController)
     router.delete("/historialPaciente", deleteHistorialPacienteController)
+    router.delete("/cita", deleteCitaController)
     return router;
 }
 

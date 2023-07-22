@@ -120,7 +120,17 @@ class Cita {
         }
     }
 
-
+    async deleteCita() {
+        let sql = /*sql*/`
+                DELETE FROM cita
+                WHERE cita_id = \'${this.cita_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default Cita;
