@@ -15,20 +15,43 @@ CREATE TABLE
         CONSTRAINT pk_tipdoc PRIMARY KEY (tipdoc_id)
     );
 
+INSERT INTO
+    tipo_documento (
+        tipdoc_nombre,
+        tipdoc_abreviatura
+    )
+VALUES ("Cedula", "CC"), ('Tarjeta de Identidad', 'TI'), ('Pasaporte', 'PS');
+
+DROP TABLE IF EXISTS genero;
+
+CREATE TABLE
+    genero(
+        gen_id INT NOT NULL AUTO_INCREMENT,
+        gen_nombre VARCHAR(20) NOT NULL,
+        gen_abreviatura VARCHAR(20) NOT NULL,
+        CONSTRAINT pk_gen PRIMARY KEY (gen_id)
+    );
+
+INSERT INTO
+    genero (gen_nombre, gen_abreviatura)
+VALUES ("Femenino", "Fem"), ('Masculino', 'Masc'), ('Otro', 'Otro');
+
+
 DROP TABLE IF EXISTS acudiente;
 
 CREATE TABLE
     acudiente (
         acu_id VARCHAR(20) NOT NULL UNIQUE,
         acu_tipdoc INT NOT NULL,
-        acu_doc VARCHAR(20) NOT NULL UNIQUE,
         acu_nombre_completo VARCHAR(80) NOT NULL,
+        acu_genero INT NOT NULL,
         acu_fechNac DATE NOT NULL,
         acu_movPerso VARCHAR(12) NOT NULL,
         acu_telefonoHogar VARCHAR(12),
         acu_email VARCHAR(50) NOT NULL,
         CONSTRAINT pk_acudiente PRIMARY KEY (acu_id),
-        CONSTRAINT fk_tipodoc_acudiente FOREIGN KEY (acu_tipdoc) REFERENCES tipo_documento (tipdoc_id)
+        CONSTRAINT fk_tipodoc_acudiente FOREIGN KEY (acu_tipdoc) REFERENCES tipo_documento (tipdoc_id),
+        CONSTRAINT fk_genero_acudiente FOREIGN KEY (acu_genero) REFERENCES genero (gen_id)
     );
 
 DROP TABLE IF EXISTS paciente;
@@ -38,6 +61,7 @@ CREATE TABLE
         pac_id VARCHAR(20) NOT NULL UNIQUE,
         pac_tipdoc INT NOT NULL,
         pac_nombre_completo VARCHAR(80) NOT NULL,
+        pac_genero INT NOT NULL,
         pac_fechNac DATE NOT NULL,
         pac_acudiente VARCHAR(20),
         pac_movPerso VARCHAR(12) NOT NULL,
@@ -45,7 +69,8 @@ CREATE TABLE
         pac_email VARCHAR(50) NOT NULL,
         CONSTRAINT pk_paciente PRIMARY KEY (pac_id),
         CONSTRAINT fk_tipodoc_paciente FOREIGN KEY (pac_tipdoc) REFERENCES tipo_documento (tipdoc_id),
-        CONSTRAINT fk_acudiente_paciente FOREIGN KEY (pac_acudiente) REFERENCES acudiente (acu_id)
+        CONSTRAINT fk_acudiente_paciente FOREIGN KEY (pac_acudiente) REFERENCES acudiente (acu_id),
+        CONSTRAINT fk_genero_paciente FOREIGN KEY (pac_genero) REFERENCES genero (gen_id)
     );
 
 DROP TABLE IF EXISTS historial_paciente;
@@ -68,6 +93,8 @@ CREATE TABLE
         CONSTRAINT pk_tipoCita PRIMARY KEY (tipoCita_id)
     );
 
+INSERT INTO tipo_cita(tipoCita_nombre) VALUES ("Primera cita"),('Control');
+
 DROP TABLE IF EXISTS estado_cita;
 
 CREATE TABLE
@@ -76,6 +103,8 @@ CREATE TABLE
         estadoCita_nombre VARCHAR(20) NOT NULL,
         CONSTRAINT pk_estadoCita PRIMARY KEY (estadoCita_id)
     );
+
+INSERT INTO estado_cita(estadoCita_nombre) VALUES ('Activa'),('Cancelada'),('Suspendida');
 
 DROP TABLE IF EXISTS cita;
 
