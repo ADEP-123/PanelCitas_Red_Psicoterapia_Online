@@ -1,4 +1,4 @@
-import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService } from "../services/postServices.js";
+import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService, postPacienteService } from "../services/postServices.js";
 
 const postTipoCitaController = async (req, res, next) => {
     try {
@@ -30,8 +30,20 @@ const postTipoDocumentoController = async (req, res, next) => {
     }
 };
 
+const postPacienteController = async (req, res, next) => {
+    try {
+        const { id, tipoDocumento, nombre, genero, fechaNacimiento, acudiente, telefPersonal, telefHogar, email } = req.body
+        const edad = Math.floor((new Date() - fechaNacimiento) / (1000 * 60 * 60 * 24 * 365.25));
+        const result = await postPacienteService(id, tipoDocumento, nombre, genero, fechaNacimiento, acudiente, telefPersonal, telefHogar, email);
+        res.status(200).json({ message: `Nuevo paciente \'${nombre}\' creado con exito`, result })
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
 export {
     postTipoCitaController,
     postEstadoCitaController,
-    postTipoDocumentoController
+    postTipoDocumentoController,
+    postPacienteController
 }
