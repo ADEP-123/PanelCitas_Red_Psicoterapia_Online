@@ -7,6 +7,7 @@ import { tipoDocumentoDTO } from '../dto/js/tipoDocumentoDTO.js';
 import { generoDTO } from '../dto/js/generoDTO.js';
 import { acudienteDTO } from '../dto/js/acudienteDTO.js';
 import { pacienteDTO } from '../dto/js/pacienteDTO.js';
+import { historialPacienteDTO } from '../dto/js/historialPacienteDTO.js';
 
 const middlewareTipoCitaDTO = express();
 middlewareTipoCitaDTO.use((req, res, next) => {
@@ -74,6 +75,16 @@ middlewarePacienteDTO.use((req, res, next) => {
     }
 });
 
+const middlewareHistorialPacienteDTO = express();
+middlewareHistorialPacienteDTO.use((req, res, next) => {
+    try {
+        let data = plainToClass(historialPacienteDTO, req.body, { excludeExtraneousValues: true });
+        req.body = JSON.parse(JSON.stringify(data));
+        next()
+    } catch (err) {
+        res.status(err.status).send(err)
+    }
+});
 
 export {
     middlewareTipoCitaDTO,
@@ -81,5 +92,6 @@ export {
     middlewareTipoDocumentoDTO,
     middlewareGeneroDTO,
     middlewareAcudienteDTO,
-    middlewarePacienteDTO
+    middlewarePacienteDTO,
+    middlewareHistorialPacienteDTO
 }
