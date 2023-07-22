@@ -7,7 +7,7 @@ const getTipoCitaService = async (id, nombre) => {
     let result
     const tipoCita = new TipoCita(id, nombre);
     if (id) {
-        result = await tipoCita.getTipoCitabyId(id);
+        result = await tipoCita.getTipoCitabyId();
     } else {
         result = await tipoCita.getAllTipoCita();
     }
@@ -18,7 +18,7 @@ const getEstadoCitaService = async (id, nombre) => {
     let result
     const estadoCita = new EstadoCita(id, nombre);
     if (id) {
-        result = await estadoCita.getEstadoCitabyId(id);
+        result = await estadoCita.getEstadoCitabyId();
     } else {
         result = await estadoCita.getAllEstadoCita();
     }
@@ -29,7 +29,7 @@ const getTipoDocumentoService = async (id, nombre, abreviatura) => {
     let result
     const tipoDocumento = new TipoDocumento(id, nombre, abreviatura);
     if (id) {
-        result = await tipoDocumento.getTipoDocumentoById(id);
+        result = await tipoDocumento.getTipoDocumentoById();
     } else {
         result = await tipoDocumento.getAllTipoDocumento();
     }
@@ -40,7 +40,7 @@ const getAcudienteService = async (id, tipoDocumento, nombre, genero, fechaNacim
     let result
     const acudiente = new Acudiente(id, tipoDocumento, nombre, genero, fechaNacimiento, telefPersonal, telefHogar, email);
     if (id) {
-        result = await acudiente.getAcudienteById(id);
+        result = await acudiente.getAcudienteById();
     } else {
         result = await acudiente.getAllAcudientes();
     }
