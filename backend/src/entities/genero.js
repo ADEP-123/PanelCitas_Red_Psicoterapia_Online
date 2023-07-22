@@ -55,6 +55,22 @@ class Genero {
             throw error;
         }
     }
+
+    async putGenero() {
+        let sql = /*sql*/`
+            UPDATE genero
+            SET
+                gen_nombre = \'${this.gen_nombre}\',
+                gen_abreviatura = \'${this.gen_abreviatura}\'
+            WHERE gen_id = \'${this.gen_id}\'`;
+        try {
+            const result = await executeQuery(sql);
+            return result.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 }
 
 

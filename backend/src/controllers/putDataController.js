@@ -1,4 +1,4 @@
-import { putAcudienteService, putEstadoCitaService, putPacienteService, putTipoCitaService, putTipoDocumentoService } from "../services/putServices.js";
+import { putAcudienteService, putEstadoCitaService, putGeneroService, putPacienteService, putTipoCitaService, putTipoDocumentoService } from "../services/putServices.js";
 
 const putTipoCitaController = async (req, res, next) => {
     try {
@@ -30,6 +30,16 @@ const putTipoDocumentoController = async (req, res, next) => {
     }
 };
 
+const putGeneroController = async (req, res, next) => {
+    try {
+        const { id, nombre, abreviatura } = req.body
+        const result = await putGeneroService(id, nombre, abreviatura);
+        res.status(200).json({ message: `Se ha actualizado el tipo de documento \'${id}\'`, result })
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
 const putAcudienteController = async (req, res, next) => {
     try {
         const { id, tipoDocumento, nombre, genero, fechaNacimiento, telefPersonal, telefHogar, email } = req.body
@@ -55,5 +65,6 @@ export {
     putEstadoCitaController,
     putTipoDocumentoController,
     putAcudienteController,
-    putPacienteController
+    putPacienteController,
+    putGeneroController
 }
