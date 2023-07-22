@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { putAcudienteController, putCitaController, putEstadoCitaController, putGeneroController, putHistorialPacienteController, putPacienteController, putTipoCitaController, putTipoDocumentoController } from "../controllers/putDataController.js";
-import { middlewareEstadoCita, middlewareTipoCitaDTO } from "./middleware/middlewareDTO.js";
+import { middlewareEstadoCitaDTO, middlewareTipoCitaDTO, middlewareTipoDocumentoDTO } from "./middleware/middlewareDTO.js";
 const putInitRoute = () => {
     const router = Router()
     router.put("/tipoCita", middlewareTipoCitaDTO, putTipoCitaController)
-    router.put("/estadoCita", middlewareEstadoCita,putEstadoCitaController)
-    router.put("/tipoDocumento", putTipoDocumentoController)
+    router.put("/estadoCita", middlewareEstadoCitaDTO, putEstadoCitaController)
+    router.put("/tipoDocumento", middlewareTipoDocumentoDTO, putTipoDocumentoController)
     router.put("/genero", putGeneroController)
     router.put("/acudiente", putAcudienteController)
     router.put("/paciente", putPacienteController)
