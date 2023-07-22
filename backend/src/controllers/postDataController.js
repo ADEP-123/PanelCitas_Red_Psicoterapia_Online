@@ -1,5 +1,5 @@
 import { getAcudienteService } from "../services/getServices.js";
-import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService, postPacienteService, postAcudienteService } from "../services/postServices.js";
+import { postTipoCitaService, postTipoDocumentoService, postEstadoCitaService, postPacienteService, postAcudienteService, postGeneroService } from "../services/postServices.js";
 
 const postTipoCitaController = async (req, res, next) => {
     try {
@@ -26,6 +26,16 @@ const postTipoDocumentoController = async (req, res, next) => {
         const { id, nombre, abreviatura } = req.body
         const result = await postTipoDocumentoService(id, nombre, abreviatura);
         res.status(200).json({ message: `Nuevo tipo de documento \'${nombre}\' creado con exito`, result })
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+const postGeneroController = async (req, res, next) => {
+    try {
+        const { id, nombre, abreviatura } = req.body
+        const result = await postGeneroService(id, nombre, abreviatura);
+        res.status(200).json({ message: `Nuevo genero \'${nombre}\' creado con exito`, result })
     } catch (error) {
         res.status(500).json(error);
     }
@@ -69,5 +79,6 @@ export {
     postEstadoCitaController,
     postTipoDocumentoController,
     postAcudienteController,
-    postPacienteController
+    postPacienteController,
+    postGeneroController
 }

@@ -3,6 +3,7 @@ import EstadoCita from "../entities/estadoCita.js";
 import TipoDocumento from "../entities/tipoDocumento.js";
 import Paciente from "../entities/paciente.js";
 import Acudiente from "../entities/acudiente.js";
+import Genero from "../entities/genero.js";
 
 const postTipoCitaService = async (id, nombre) => {
     const tipoCita = new TipoCita(id, nombre);
@@ -19,6 +20,12 @@ const postEstadoCitaService = async (id, nombre) => {
 const postTipoDocumentoService = async (id, nombre, abreviatura) => {
     const tipoDocumento = new TipoDocumento(id, nombre, abreviatura);
     const result = await tipoDocumento.postTipoDocumento();
+    return result
+};
+
+const postGeneroService = async (id, nombre, abreviatura) => {
+    const genero = new Genero(id, nombre, abreviatura);
+    const result = await genero.postGenero();
     return result
 };
 
@@ -39,5 +46,6 @@ export {
     postEstadoCitaService,
     postTipoDocumentoService,
     postPacienteService,
-    postAcudienteService
+    postAcudienteService,
+    postGeneroService
 }
