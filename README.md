@@ -50,7 +50,25 @@
 ---
 La api desde el script de la base de datos contiene datos predeterminados como el tipo de cita, el estado de la cita, el genero entre otros, sin embargo, estos datos pueden ser modificados desde los diferentes endpoints que proporciona la api.
 
-La api se encuentra estructurada de tal manera que cada tabla contiene su correspondiente CRUD basico compuesto por los metodos get, post, put y delete, los cuales pueden ser accedidos a travez de la url con los siguientes endpoints:
+La api se encuentra estructurada de tal manera que cada tabla contiene su correspondiente CRUD basico compuesto por los metodos get, post, put y delete, los cuales pueden ser accedidos a travez de la url con los enpoints mencionados mas adelante
+
+Es sumamente importante que primero genere el token de verificacion de usuario descrito en la tabla usuarios, este token unicamente tiene una duracion de 10 min y se renueva cada que realiza una consulta.
+
+## TABLA usuarios:
+Esta tabla se usa para validar que el usuario que este utilizando la api este registrado, unicamente posee un metodo que devuelve un valor 0 o 1 dependiendo de la existencia o no del usuario.
+
+1. Post
+    - URL: http://127.9.63.7:5000/api/login/
+    - Metodo: post
+    - Lectura Datos: body
+        - ej: 
+        ```json
+        {
+          "id":"admin",
+          "pass":"admin123456789"
+        }
+        ```
+    - Descripcion: debe ingresar los datos tal cual se encuentran en el ejemplo en caso contrario sigifica que el usuario no se encuentra registrado y no le dejara realizar la consulta.
 
 ### Tabla tipoCita:
 
