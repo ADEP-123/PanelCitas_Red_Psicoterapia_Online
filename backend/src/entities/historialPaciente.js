@@ -27,10 +27,17 @@ class HistorialPaciente {
     async getHistorialPacienteById() {
         let sql = /*sql*/`
             SELECT
-                historialPaciente_id as id,
-                fecha_inicio as fechInicHistorial,
-                historialPaciente_paciente as paciente
-            FROM historial_paciente
+            A.historialPaciente_id as id,
+            A.fecha_inicio as fechInicHistorial,
+            A.historialPaciente_paciente as IdPaciente,
+            B.pac_nombre_completo as nomPaciente,
+            B.pac_acudiente as IdAcudiente,
+            C.cita_id as IdCita,
+            C.fecha_inicio as inCita,
+            C.fecha_fin as finCita
+            FROM historial_paciente A 
+            JOIN paciente B ON A.historialPaciente_paciente = B.pac_id
+            JOIN cita C ON C.cita_historial = A.historialPaciente_id
             WHERE historialPaciente_id = \'${this.historialPaciente_id}\'`;
         try {
             const result = await executeQuery(sql);
@@ -43,10 +50,17 @@ class HistorialPaciente {
     async getHistorialPacienteByPacienteId() {
         let sql = /*sql*/`
             SELECT
-                historialPaciente_id as id,
-                fecha_inicio as fechInicHistorial,
-                historialPaciente_paciente as paciente
-            FROM historial_paciente
+            A.historialPaciente_id as id,
+            A.fecha_inicio as fechInicHistorial,
+            A.historialPaciente_paciente as IdPaciente,
+            B.pac_nombre_completo as nomPaciente,
+            B.pac_acudiente as IdAcudiente,
+            C.cita_id as IdCita,
+            C.fecha_inicio as inCita,
+            C.fecha_fin as finCita
+            FROM historial_paciente A 
+            JOIN paciente B ON A.historialPaciente_paciente = B.pac_id
+            JOIN cita C ON C.cita_historial = A.historialPaciente_id
             WHERE historialPaciente_paciente = \'${this.historialPaciente_paciente}\'`;
         try {
             const result = await executeQuery(sql);
