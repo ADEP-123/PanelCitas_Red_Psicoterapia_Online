@@ -3,7 +3,7 @@ import { Expose, Type, Transform } from "class-transformer";
 
 export class acudienteDTO {
     @Expose({ name: "id" })
-    @Transform(({ value, key }) => { if (/^[0-9]{10,12}$/.test(value)) return value; else throw { status: 400, message: `Error en ecritura del documento de identificacion` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (/^[0-9]{10,12}$/.test(value) && value) return value; else throw { status: 400, message: `Error en ecritura del documento de identificacion` } }, { toClassOnly: true })
     id: string;
 
     @Expose({ name: "tipoDocumento" })
@@ -11,7 +11,7 @@ export class acudienteDTO {
     tipoDocumento: number;
 
     @Expose({ name: "nombre" })
-    @Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value) || value == null) return value; else throw { status: 400, message: `Error de escritura del nombre` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value) && value) return value; else throw { status: 400, message: `Error de escritura del nombre` } }, { toClassOnly: true })
     nombre: string;
 
     @Expose({ name: "genero" })
@@ -26,11 +26,11 @@ export class acudienteDTO {
     fechaNacimiento: string;
 
     @Expose({ name: "telefPersonal" })
-    @Transform(({ value, key }) => { if (/^[0-9]+$/.test(value)) return value; else throw { status: 400, message: `Error en la escritura del telefono personal` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (/^[0-9]+$/.test(value) && value) return value; else throw { status: 400, message: `Error en la escritura del telefono personal` } }, { toClassOnly: true })
     telefPersonal: string;
 
     @Expose({ name: "telefHogar" })
-    @Transform(({ value, key }) => { if (/^[0-9]+$/.test(value) || value == null) return value; else throw { status: 400, message: `Error en la escritura del telefono de hogar` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (/^[0-9]+$/.test(value) && value) return value; else throw { status: 400, message: `Error en la escritura del telefono de hogar` } }, { toClassOnly: true })
     telefHogar: string;
 
     @Expose({ name: "email" })

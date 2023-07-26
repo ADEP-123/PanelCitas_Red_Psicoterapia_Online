@@ -16,7 +16,7 @@ export class estadoCitaDTO {
 }
 __decorate([
     Expose({ name: "id" }),
-    Transform(({ value, key }) => { if (parseInt(value) || value == null)
+    Transform(({ value, key }) => { if (parseInt(value))
         return value;
     else
         throw { status: 400, message: `Error en ecritura del id del historial` }; }, { toClassOnly: true }),
@@ -24,7 +24,7 @@ __decorate([
 ], estadoCitaDTO.prototype, "id", void 0);
 __decorate([
     Expose({ name: "nombre" }),
-    Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value))
+    Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value) && value)
         return value;
     else
         throw { status: 400, message: `Error en tipo de parametro 1` }; }, { toClassOnly: true }),

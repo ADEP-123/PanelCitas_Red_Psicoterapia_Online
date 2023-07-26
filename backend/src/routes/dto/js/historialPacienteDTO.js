@@ -16,7 +16,7 @@ export class historialPacienteDTO {
 }
 __decorate([
     Expose({ name: "id" }),
-    Transform(({ value, key }) => { if (parseInt(value) || value == null)
+    Transform(({ value, key }) => { if (parseInt(value))
         return value;
     else
         throw { status: 400, message: `Error en ecritura del id del historial` }; }, { toClassOnly: true }),
@@ -24,7 +24,7 @@ __decorate([
 ], historialPacienteDTO.prototype, "id", void 0);
 __decorate([
     Expose({ name: "paciente" }),
-    Transform(({ value, key }) => { if (/^[0-9]+$/.test(value))
+    Transform(({ value, key }) => { if (/^[0-9]+$/.test(value) && value)
         return value;
     else
         throw { status: 400, message: `Error en la escritura del documento de identificacion del paciente` }; }, { toClassOnly: true }),

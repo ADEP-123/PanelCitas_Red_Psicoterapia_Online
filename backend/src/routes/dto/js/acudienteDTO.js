@@ -22,7 +22,7 @@ export class acudienteDTO {
 }
 __decorate([
     Expose({ name: "id" }),
-    Transform(({ value, key }) => { if (/^[0-9]{10,12}$/.test(value))
+    Transform(({ value, key }) => { if (/^[0-9]{10,12}$/.test(value) && value)
         return value;
     else
         throw { status: 400, message: `Error en ecritura del documento de identificacion` }; }, { toClassOnly: true }),
@@ -35,7 +35,7 @@ __decorate([
 ], acudienteDTO.prototype, "tipoDocumento", void 0);
 __decorate([
     Expose({ name: "nombre" }),
-    Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value) || value == null)
+    Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value) && value)
         return value;
     else
         throw { status: 400, message: `Error de escritura del nombre` }; }, { toClassOnly: true }),
@@ -59,7 +59,7 @@ __decorate([
 ], acudienteDTO.prototype, "fechaNacimiento", void 0);
 __decorate([
     Expose({ name: "telefPersonal" }),
-    Transform(({ value, key }) => { if (/^[0-9]+$/.test(value))
+    Transform(({ value, key }) => { if (/^[0-9]+$/.test(value) && value)
         return value;
     else
         throw { status: 400, message: `Error en la escritura del telefono personal` }; }, { toClassOnly: true }),
@@ -67,7 +67,7 @@ __decorate([
 ], acudienteDTO.prototype, "telefPersonal", void 0);
 __decorate([
     Expose({ name: "telefHogar" }),
-    Transform(({ value, key }) => { if (/^[0-9]+$/.test(value) || value == null)
+    Transform(({ value, key }) => { if (/^[0-9]+$/.test(value) && value)
         return value;
     else
         throw { status: 400, message: `Error en la escritura del telefono de hogar` }; }, { toClassOnly: true }),

@@ -20,15 +20,15 @@ export class citaDTO {
 }
 __decorate([
     Expose({ name: "id" }),
-    Transform(({ value, key }) => { if (parseInt(value) || value == null)
+    Transform(({ value, key }) => { if (parseInt(value))
         return value;
     else
-        throw { status: 400, message: `Error en ecritura del id del historial` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en ecritura del id` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], citaDTO.prototype, "id", void 0);
 __decorate([
     Expose({ name: "tipo" }),
-    Transform(({ value, key }) => { if (parseInt(value) || value == null)
+    Transform(({ value, key }) => { if (parseInt(value))
         return value;
     else
         throw { status: 400, message: `Error en ecritura del id del historial` }; }, { toClassOnly: true }),
@@ -36,7 +36,7 @@ __decorate([
 ], citaDTO.prototype, "tipo", void 0);
 __decorate([
     Expose({ name: "estado" }),
-    Transform(({ value, key }) => { if (parseInt(value) || value == null)
+    Transform(({ value, key }) => { if (parseInt(value))
         return value;
     else
         throw { status: 400, message: `Error en ecritura del id del historial` }; }, { toClassOnly: true }),
@@ -46,7 +46,7 @@ __decorate([
     Expose({ name: "inicio" }),
     Transform(({ value, key }) => {
         const fechaSinComillas = value.replace(/\"/g, '');
-        if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(fechaSinComillas))
+        if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(fechaSinComillas) && value)
             return value;
         else
             throw { status: 400, message: `Error en feha y/o hora de inicio` };
@@ -57,7 +57,7 @@ __decorate([
     Expose({ name: "fin" }),
     Transform(({ value, key }) => {
         const fechaSinComillas = value.replace(/\"/g, '');
-        if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(fechaSinComillas))
+        if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(fechaSinComillas) && value)
             return value;
         else
             throw { status: 400, message: `Error en feha y/o hora final` };
@@ -66,7 +66,7 @@ __decorate([
 ], citaDTO.prototype, "fin", void 0);
 __decorate([
     Expose({ name: "historial" }),
-    Transform(({ value, key }) => { if (parseInt(value) || value == null)
+    Transform(({ value, key }) => { if (parseInt(value))
         return value;
     else
         throw { status: 400, message: `Error en ecritura del id del historial` }; }, { toClassOnly: true }),
