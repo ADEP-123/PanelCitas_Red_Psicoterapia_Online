@@ -1,6 +1,5 @@
 import express from "express";
 import { jwtVerify } from "jose";
-import { loginDataController } from "../../controllers/loginDataController.js";
 const middlewareValidLog = express();
 middlewareValidLog.use(async (req, res, next) => {
     
@@ -8,7 +7,6 @@ middlewareValidLog.use(async (req, res, next) => {
     if (!authorization) return res.status(401).send({ token: "token de autorizacion no proporcionado" });
     try {
         // res.cookie('User', authorization, { maxAge: 600000, httpOnly: true });
-        loginDataController;
         const encoder = new TextEncoder();
         const jwData = await jwtVerify(
             authorization,

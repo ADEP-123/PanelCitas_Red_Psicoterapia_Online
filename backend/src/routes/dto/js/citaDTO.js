@@ -20,7 +20,7 @@ export class citaDTO {
 }
 __decorate([
     Expose({ name: "id" }),
-    Transform(({ value, key }) => { if (parseInt(value))
+    Transform(({ value, key }) => { if (parseInt(value) || value == null)
         return value;
     else
         throw { status: 400, message: `Error en ecritura del id` }; }, { toClassOnly: true }),

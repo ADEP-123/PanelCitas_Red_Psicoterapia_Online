@@ -3,7 +3,7 @@ import { Expose, Type, Transform } from "class-transformer";
 export class citaDTO {
 
     @Expose({ name: "id" })
-    @Transform(({ value, key }) => { if (parseInt(value)) return value; else throw { status: 400, message: `Error en ecritura del id` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (parseInt(value) || value == null) return value; else throw { status: 400, message: `Error en ecritura del id` } }, { toClassOnly: true })
     id: number;
 
     @Expose({ name: "tipo" })
