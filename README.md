@@ -31,7 +31,7 @@
    - 3.1. Corrobore tener Apache y Mysql instalados y corriendo en su ordenador
    - 3.2. Ejecute el comando "mysql -u root -p;"
    - 3.3. Si no muestra ningun error, Ejecute el comando "SHOW DATABASES;" y asegurese de no tener ninguna base de datos con el nombre "PanelCitas_Red_Psicoterapia_Online"
-   - 3.4. Ahora ejecute uno a uno los comandos del archivo scriptDatabase
+   - 3.4. Ahora ejecute uno a uno los comandos del archivo scriptDatabase, para esto puede hacerlo desde el bloque de comandos o usando alguna extension de tu preferencia como por ejemplo database en visual studio code
 4. Revise que las configuraciones del archivo .env coincidan con las de su ordenador, si no es el caso cambielas
 5. Abra un nuevo bloque de comandos desde el archivo del repositorio, si esta usando visual estudio puede hacerlo desde la pestaña terminal > new terminal
 6. Con el comando "cd backend"  ingrese a la carpeta backend
