@@ -52,7 +52,15 @@ La api desde el script de la base de datos contiene datos predeterminados como e
 
 La api se encuentra estructurada de tal manera que cada tabla contiene su correspondiente CRUD basico compuesto por los metodos get, post, put y delete, los cuales pueden ser accedidos a travez de la url con los enpoints mencionados mas adelante
 
-Es sumamente importante que primero genere el token de verificacion de usuario descrito en la tabla usuarios, este token unicamente tiene una duracion de 10 min y se renueva cada que realiza una consulta.
+Es sumamente importante que primero genere el token de verificacion de usuario descrito en la tabla usuarios, este token tiene una duracion por fines practicos de media gira (30 minutos), y debe ser proporcionado despues de creado en un header de titulo Authorization para cada peticion hasta su expiracion, para esto al usted hacer la peticion en el login va a recibir (en caso de proporcionar los datos correctos) un mensaje similar al siguiente:
+    
+    ```json
+    {
+        "message": "Token creado con exito",
+        "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqc29uIjp7ImlkIjoiYWRtaW4iLCJwYXNzIjoiYWRtaW4xMjM0NTY3ODkiLCJyb2wiOiJwc2ljb2xvZ28ifSwiaWF0IjoxNjkwMzc2MzI0LCJleHAiOjE2OTAzNzgxMjR9.f4UaM-QwZFdpXnyidflaDtn4VbOgiyddzC_5sdNwfdY"
+    }
+    ```
+debe copiar el contenido del parametro jwt en el header Authorization.
 
 ## TABLA usuarios:
 Esta tabla se usa para validar que el usuario que este utilizando la api este registrado, unicamente posee un metodo que devuelve un valor 0 o 1 dependiendo de la existencia o no del usuario.
