@@ -7,10 +7,8 @@ const loginDataController = async (req, res, next) => {
     try {
         const { id, pass } = req.body
         const result = await testlogin(id, pass);
-
         if (result.count == 1) {
-
-            letjson = {
+            let json = {
                 id,
                 pass,
                 rol: "psicologo"
